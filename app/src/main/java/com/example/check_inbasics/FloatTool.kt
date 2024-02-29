@@ -1,10 +1,10 @@
 package com.example.check_inbasics
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
+import android.util.Log
 
 object FloatTool {
     var CanShowFloat = false
@@ -33,6 +33,7 @@ object FloatTool {
     fun onActivityResult(requestCode: Int, resultCode: Int, activity: Activity,
                          callBack: ((isSuccess: Boolean) -> Unit)? = null ) {
         // Toast.makeText(activity, "onActivityResult设置权限！", Toast.LENGTH_SHORT).show();
+        Log.i("Lishenyang", "MainActivity onActivityResult  ${requestCode}  ${resultCode} ${callBack}")
         if (requestCode == REQUEST_OVERLAY) { // 从应用权限设置界面返回
             if (resultCode == Activity.RESULT_OK) {
                 // 设置标识为可显示悬浮窗

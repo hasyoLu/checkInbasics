@@ -9,21 +9,15 @@ import f.g.hulmgn.rnjstb.djgyyw.FG
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_main)
         Log.i("Lishenyang", "MainActivity onCreate")
         if (!FloatTool.hasOverlayPermission(this)) {
             Log.i("Lishenyang", "MainActivity requestOverlayPermission")
             FloatTool.requestOverlayPermission(this)
+            return
         }
-
-//        if (!PopBackgroundPermissionUtil.hasPopupBackgroundPermission(this)) {
-//            Log.d("MainActivity", "MainActivity: PopupBackgroundPermission")
-//            SystemAlertWindow.requestOverlayPermissionByActivity(mSource = this)
-//        } else {
-//            Log.d("MainActivity", "MainActivity: finish")
-//            TimerHelper.startUniAppTime
-//            finish()
-//        }
+        UniAppUtil.startUniAppNow(this)
+        finish()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -34,9 +28,12 @@ class MainActivity : AppCompatActivity() {
                 if (!PopBackgroundPermissionUtil.hasPopupBackgroundPermission(this)) {
                     Log.i("Lishenyang", "MainActivity whitelistSettings")
                     FG.whitelistSettings(this)
+                    UniAppUtil.startUniAppNow(this)
+                    finish()
                 }
             } else {
                 Log.i("Lishenyang", "MainActivity finish")
+                UniAppUtil.startUniAppNow(this)
                 finish()
             }
         }
